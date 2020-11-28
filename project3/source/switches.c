@@ -2,7 +2,6 @@
 #include "switches.h"
 #include "led.h"
 #include "stateMachines.h"
-#include "../p2swLib/p2switches.h"
 
 char switch_state_down, switch_state_changed; /* effectively boolean */
 char button;
@@ -20,9 +19,7 @@ switch_update_interrupt_sense()
 }
 
 
-void
-
-p2sw_init(unsigned char mask)
+void p2sw_init(unsigned char mask)
 {
   button=2;
   switch_mask = mask;
@@ -33,28 +30,30 @@ p2sw_init(unsigned char mask)
   switch_update_interrupt_sense();
 }
 
-unsigned int
-p2sw_read() {
+unsigned int p2sw_read() {
   unsigned int sw_changed = switches_current ^ switches_last_reported;
   switches_last_reported = switches_current;
   return switches_current | (sw_changed << 8);
 }
 
-void
-switch_interrupt_handler()
+void switch_interrupt_handler()
 {
   button=20;
   int p2val = p2sw_read();
-  if      (8 & p2val){
+  if      (1 & p2val){
     button = 0;}
-  else if (1 & p2val){
+  if (2 & p2val){
     button = 1;}
-  else if (4 & p2val){
+  if (4 & p2val){
     button = 2;}
-  else if (2 & p2val){
+  if (8 & p2val){
     button = 3;}
-  else{
-    button=4;}
+  else {
+    button =0;
+  }
 
   state_advance_buttons();
+  switch_update_interrupt_sense();
 }
+
+

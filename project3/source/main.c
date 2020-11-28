@@ -12,5 +12,6 @@ void main(void)
   p2sw_init(15);
   lcd_init();
   enableWDTInterrupts();
+  or_sr(0x8);
   or_sr(0x18);  // CPU off, GIE on
 }

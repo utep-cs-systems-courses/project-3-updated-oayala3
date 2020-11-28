@@ -84,14 +84,11 @@ void state_advance_buttons(){
   switch(button){
   case 0:
     turn_on();
-    music=1;
     break;
   case 1:
     turn_off();
     break;
   case 2:
-    green_on=1;
-    led_update();
     if(dimLight)
       dimLight=0;
     else
