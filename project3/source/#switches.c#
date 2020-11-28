@@ -53,8 +53,6 @@ switch_interrupt_handler()
     button = 2;}
   else if (2 & p2val){
     button = 3;}
-  else{
-    button=4;}
 
   state_advance_buttons();
 }

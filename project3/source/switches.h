@@ -9,9 +9,11 @@
 typedef unsigned char u_char;
 typedef unsigned int u_int;
 
-void switch_init();
-void switch_interrupt_handler();
+unsigned int p2sw_read();
 
+void p2sw_init(unsigned char mask);
+unsigned int p2sw_read();
+void switch_interrupt_handler();
 extern char switch_state_down, switch_state_changed, button; /* effectively boolean */
 
 #endif // included

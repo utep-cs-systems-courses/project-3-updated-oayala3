@@ -12,7 +12,6 @@ char dimLevel= 0;
 
 void turn_on(){
   red_on      = 1;
-  green_on    = 1;
   led_changed = 1;
   on          = 1;
   led_update();
@@ -20,7 +19,6 @@ void turn_on(){
 
 void turn_off(){
   red_on      = 0;
-  green_on    = 0;
   led_changed = 1;
   on          = 0;
   led_update();
@@ -86,11 +84,14 @@ void state_advance_buttons(){
   switch(button){
   case 0:
     turn_on();
+    music=1;
     break;
   case 1:
     turn_off();
     break;
   case 2:
+    green_on=1;
+    led_update();
     if(dimLight)
       dimLight=0;
     else
