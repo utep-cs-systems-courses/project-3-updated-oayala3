@@ -95,10 +95,10 @@ void state_advance_buttons(){
     break;
   case 1:
     if(on){
-    if(dimLight)
-      dimLight=0;
-    else
-      dimLight=1;
+      if(dimLight)
+	dimLight=0;
+      else
+	dimLight=1;
     }
     break;
   case 2:

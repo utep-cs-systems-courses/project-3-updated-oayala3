@@ -10,7 +10,7 @@ __interrupt_vec(WDT_VECTOR) WDT(){/* 250 interrupts/sec */
   static char change_dim  = 0;
   if (++blink_count == 75) {
     state_advance();
-    lcd_state();
+    //    lcd_state();
     blink_count = 0;
   }
   if(++blink_light==1){
@@ -21,5 +21,6 @@ __interrupt_vec(WDT_VECTOR) WDT(){/* 250 interrupts/sec */
   if(++change_dim==125){
     dim_machine();
     change_dim = 0;
+    dim_machine();
   }
 }

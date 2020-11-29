@@ -3,8 +3,8 @@
 #include "led.h"
 #include "stateMachines.h"
 
-char switch_state_down, switch_state_changed; /* effectively boolean */
-char button;
+
+char button=4;
 static unsigned char switch_mask;
 static unsigned char switches_last_reported;
 static unsigned char switches_current;
@@ -21,7 +21,6 @@ switch_update_interrupt_sense()
 
 void p2sw_init(unsigned char mask)
 {
-  button=2;
   switch_mask = mask;
   P2REN |= mask;    /* enables resistors for switches */
   P2IE = mask;      /* enable interrupts from switches */
@@ -35,25 +34,24 @@ unsigned int p2sw_read() {
   switches_last_reported = switches_current;
   return switches_current | (sw_changed << 8);
 }
-
-void switch_interrupt_handler()
+void
+switch_interrupt_handler()
 {
-  button=20;
-  int p2val = p2sw_read();
-  if      (1 & p2val){
-    button = 0;}
-  if (2 & p2val){
-    button = 1;}
-  if (4 & p2val){
-    button = 2;}
-  if (8 & p2val){
-    button = 3;}
-  else {
-    button =0;
+  unsigned int readSwitch=p2sw_read();
+  unsigned int i;
+  for(i=0; i<4; i++){
+    if ((readSwitch & (1<<i))==0){ /* check which button is pressed*/
+      button = i;
+      break;
+    }
   }
-
   state_advance_buttons();
-  switch_update_interrupt_sense();
+  lcd_state();
 }
-
-
+void __interrupt_vec(PORT2_VECTOR) Port_2(){
+  if (P2IFG & switch_mask) {  /* did a button cause this interrupt? */
+    P2IFG &= ~switch_mask;/* clear pending sw interrupts */
+    switch_update_interrupt_sense();
+    switch_interrupt_handler();
+  }
+}
