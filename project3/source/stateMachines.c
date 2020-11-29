@@ -86,29 +86,54 @@ void state_advance_buttons(){
   switch(button){
   case 0:
     if(!on){
+
+      if(music){
+	songONLightON();
+      }else{
+	redON();
+      }
+      
       turn_on();
       on=1;
+      
     }else{
       turn_off();
       on=0;
+
+
+      if(music){
+	songONLightOFF();
+      }else{
+	mainMenu();
+      }
+
+
     }
     break;
   case 1:
     if(on){
-    if(dimLight)
-      dimLight=0;
-    else
-      dimLight=1;
+      if(dimLight){
+	dimLight=0;
+	mainMenu();
+      }else{
+	dimLight=1;
+	dimON();
+	}
     }
     break;
   case 2:
-    if(on)
+    songONLightON();
+    if(on){
       music=1;
-    else
+    }else{
       music=0;
+      mainMenu();
+    }
     break;
   }
 }
+
+/*
 void lcd_state(){
   if(on && !dimLight && music){
     songONLightON();
@@ -122,6 +147,7 @@ void lcd_state(){
     mainMenu();
   }
 }
+*/
 
 void state_advance(){
   static int state=-1;

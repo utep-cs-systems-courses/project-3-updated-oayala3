@@ -46,7 +46,7 @@ switch_interrupt_handler()
     }
   }
   state_advance_buttons();
-  lcd_state();
+  //lcd_state();
 }
 void __interrupt_vec(PORT2_VECTOR) Port_2(){
   if (P2IFG & switch_mask) {  /* did a button cause this interrupt? */

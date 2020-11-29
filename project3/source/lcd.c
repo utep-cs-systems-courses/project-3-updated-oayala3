@@ -7,7 +7,7 @@
 void mainMenu(){
   clearScreen(COLOR_BLUE);
   
-  drawString5x7(1,5, "Main Menu", COLOR_RED, COLOR_BLUE);
+  drawString8x12(1,5, "Main Menu", COLOR_RED, COLOR_BLUE);
   fillRectangle(10, 20, 110, 20, COLOR_GREEN);
   drawString5x7(15,25, "Turn on RED LED", COLOR_GREEN, COLOR_BLUE);
   fillRectangle(10, 50, 110, 20, COLOR_RED);
@@ -23,7 +23,7 @@ void mainMenu(){
 void redON(){
   clearScreen(COLOR_BLUE);
   
-  drawString5x7(1,5, "RED is ON", COLOR_RED, COLOR_BLUE);
+  drawString8x12(1,5, "RED is ON", COLOR_RED, COLOR_BLUE);
   fillRectangle(10, 20, 110, 20, COLOR_GREEN);
   drawString5x7(15,25, "Turn off RED LED", COLOR_GREEN, COLOR_BLUE);
   fillRectangle(10, 50, 110, 20, COLOR_GREEN);
@@ -40,7 +40,7 @@ void dimON(){
   clearScreen(COLOR_BLUE);
 
   
-  drawString5x7(1,5, "RED is ON && Dim", COLOR_RED, COLOR_BLUE);
+  drawString8x12(1,5, "RED is ON && Dim", COLOR_RED, COLOR_BLUE);
   fillRectangle(10, 20, 110, 20, COLOR_GREEN);
   drawString5x7(15,25, "Turn off RED LED", COLOR_GREEN, COLOR_BLUE);
   fillRectangle(10, 50, 110, 20, COLOR_GREEN);
@@ -56,7 +56,7 @@ void dimON(){
 void songONLightON(){
   clearScreen(COLOR_BLUE);
   
-  drawString5x7(1,5, "RED is ON && music", COLOR_RED, COLOR_BLUE);
+  drawString8x12(1,5, "RED is ON && music", COLOR_RED, COLOR_BLUE);
   fillRectangle(10, 20, 110, 20, COLOR_GREEN);
   drawString5x7(15,25, "Turn off RED LED", COLOR_GREEN, COLOR_BLUE);
   fillRectangle(10, 50, 110, 20, COLOR_GREEN);
@@ -72,7 +72,7 @@ void songONLightON(){
 void songONLightOFF(){
   clearScreen(COLOR_BLUE);
   
-  drawString5x7(1,5, "RED is Off && Music", COLOR_RED, COLOR_BLUE);
+  drawString8x12(1,5, "RED is Off && Music", COLOR_RED, COLOR_BLUE);
   fillRectangle(10, 20, 110, 20, COLOR_GREEN);
   drawString5x7(15,25, "Turn on RED LED", COLOR_GREEN, COLOR_BLUE);
   fillRectangle(10, 50, 110, 20, COLOR_RED);
