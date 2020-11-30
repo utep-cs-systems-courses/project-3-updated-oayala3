@@ -36,7 +36,7 @@ case0:
 	call buzzer_set_period ;
 	jmp switchDone
 case1:
-	push #7124
+	mov #7124, r12
 	call buzzer_set_period;
 	jmp switchDone
 case2:
