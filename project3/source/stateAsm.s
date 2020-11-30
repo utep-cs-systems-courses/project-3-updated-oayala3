@@ -2,8 +2,8 @@
 
 	.extern	buzzer_set_period() ;
 	.data
-	.word 1
-jp:	
+S:	.word 1
+JT:	
 	.word case0
 	.word case1		;
 	.word case2		;
@@ -24,7 +24,7 @@ jp:
 	.text
 .global switchAs
 switchAs:	
-	Mov &s, r12
+	Mov &S, r12
 	cmp #18,r2		;
 	jnc case15		;
 	add r12,r12		;
@@ -90,9 +90,9 @@ case14:
 	call buzzer_set_period	;
 	jmp switchDone
 case15:
-	mov #0,
+	jmp switchDone
 switchDone:
-	Pop r0
+	Pop r0			;
 	
 		
 
