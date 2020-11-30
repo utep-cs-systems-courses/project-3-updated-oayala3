@@ -4,12 +4,15 @@
 #include "switches.h"
 #include "buzzer.h"
 #include "lcd.h"
-#include "shapemotion.h"
+//#include "shapemotion.h"
 char music   = 0;
 char on      = 0;
 char dimLight= 0;
 char dimLevel= 0;
 char party   = 0;
+
+extern int switchAs();
+
 void turn_on(){
   red_on      = 1;
   led_changed = 1;
@@ -139,18 +142,19 @@ void state_advance_buttons(){
     }
   }
 }
-void party_state(){
+
+/*
   while(party) {
-    while (!redrawScreen) { /**< Pause CPU if screen doesn't need updating */
-      P1OUT &= ~LED_GREEN;    /**< Green led off witHo CPU */
-      or_sr(0x10);      /**< CPU OFF */
+    while (!redrawScreen) { 
+      P1OUT &= ~LED_GREEN;
+      or_sr(0x10);     
     }
-    P1OUT |=LED_GREEN;       /**< Green led on when CPU on */
+    P1OUT |=LED_GREEN;
     redrawScreen = 0;
     movLayerDraw(&ml0, &layer0);
   }
 }
-/*
+
 void lcd_state(){
   if(on && !dimLight && music){
     songONLightON();
@@ -169,9 +173,10 @@ void lcd_state(){
 void state_advance(){
   static int state=-1;
   if(music){
-    state++;
-    switch(state){
-    case 0:  buzzer_set_period(7124); break;
+    // state++;
+    // switch(state){
+      switchAs();
+      /*    case 0:  buzzer_set_period(7124); break;
     case 1:  buzzer_set_period(7124); break;
     case 2:  buzzer_set_period(4992); break;
     case 3:  buzzer_set_period(4992); break;
@@ -187,9 +192,11 @@ void state_advance(){
     case 13: buzzer_set_period(7126); break;
     case 14: buzzer_set_period(7126); break;
     case 15: state=0; break;
-    }
+      */    
+
   }
   else{
     buzzer_set_period(0);
   }
 }
+
