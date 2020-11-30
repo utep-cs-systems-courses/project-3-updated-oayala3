@@ -11,7 +11,7 @@ AR		=msp430-eld-ar
 all: button.elf 
 
 #additional rules for files
-button.elf: ${COMMON_OBJECTS} main.o lcd.o switches.o buzzer.o wdInterruptHandler.o led.o stateMachines.o ../lib/libTimer.a
+button.elf: ${COMMON_OBJECTS} main.o lcd.o switches.o buzzer.o wdInterruptHandler.o led.o stateMachines.o stateAsm.o state2Asm.o ../lib/libTimer.a
 	${CC} ${CFLAGS} ${LDFLAGS} -o $@ $^ -lLcd -lTimer -lShape -lCircle
 
 load: button.elf

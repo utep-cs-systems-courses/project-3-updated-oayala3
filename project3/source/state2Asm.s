@@ -1,0 +1,98 @@
+	.arch msp430g2553
+	.p2align 1,0
+	.text
+	
+	.extern	buzzer_set_period() ;
+	.extern statebuzzer()	    ;
+	.data
+JT:	
+	.word case0
+	.word case1		;
+	.word case2		;
+	.word case3		;
+	.word case4		;
+	.word case5		;
+	.word case6		;
+	.word case7		;
+	.word case8		;
+	.word case9		;
+	.word case10		;
+	.word case11		;
+	.word case12		;
+	.word case13		;
+	.word case14		;
+	.word case15		;
+	
+	.text
+.global switchAs2
+switchAs2:
+	call #statebuzzer	;
+	mov JT(r12),r0
+case0:
+	mov #7124, r12
+	call #buzzer_set_period ;
+	jmp case1
+case1:
+	mov #400, r12
+	call #buzzer_set_period;
+	jmp case2
+case2:
+	mov #8000,r12
+	call #buzzer_set_period	;
+	jmp switchDone
+case3:
+	mov #400,r12
+	call #buzzer_set_period ;
+	jmp switchDone
+case4:
+	mov #7000,r12
+	call #buzzer_set_period	;
+	jmp switchDone
+case5:
+	mov #400,r12
+	call #buzzer_set_period;
+	jmp switchDone
+case6:
+	mov #8000,r12
+	call #buzzer_set_period ;
+	jmp switchDone
+case7:
+	mov #400,r12
+	call #buzzer_set_period ;
+	jmp switchDone
+case8:
+	mov #5714,r12
+	call #buzzer_set_period	;
+	jmp switchDone
+case9:
+	mov #5664,r12
+	call #buzzer_set_period ;
+	jmp switchDone
+case10:
+	mov #5664,r12
+	call #buzzer_set_period ;
+	jmp switchDone
+case11:
+	mov #6660,r12
+	call #buzzer_set_period	;
+	jmp switchDone
+case12:
+	mov #6660,r12
+	call #buzzer_set_period ;
+	jmp switchDone
+case13:
+	mov #7126,r12
+	call #buzzer_set_period	;
+	jmp switchDone
+case14:
+	mov #7126,r12
+	call #buzzer_set_period	;
+	mov #1,r12
+	jmp switchDone
+case15:	
+	mov #1,r12		;
+	jmp switchDone
+switchDone:
+	pop r0			;
+	
+		

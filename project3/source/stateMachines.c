@@ -4,14 +4,14 @@
 #include "switches.h"
 #include "buzzer.h"
 #include "lcd.h"
-char music   = 0;
+int music   = 0;
 char on      = 0;
 char dimLight= 0;
 char dimLevel= 0;
 char party   = 0;
 
-//extern int switchAs();
-
+extern int switchAs(int state);
+extern int switchAs2();
 void turn_on(){
   red_on      = 1;
   led_changed = 1;
@@ -126,11 +126,20 @@ void state_advance_buttons(){
   case 2:
     songONLightON();
     if(on){
-      music=1;
+      if(music==2 || music ==0)
+	{
+	  music=1;
+	}
+      else if(music==1)
+	{
+	  music=2;
+	}
     }else{
       music=0;
       mainMenu();
-    }
+
+      }
+
     break;
     
   case 3:
@@ -168,30 +177,27 @@ void lcd_state(){
   }
 }
 */
-
+int statebuzzer(){
+  static int state1=-1;
+  if(state1==15){
+      state1=-1;
+    }
+    state1++;
+    return state1;
+}
 void state_advance(){
   static int state=-1;
-  if(music){
+  if(music==1){
+    if(state==15){
+      state=-1;
+    }
     state++;
-    switch(state){
-      //      switchAs();
-    case 0:  buzzer_set_period(7124); break;
-    case 1:  buzzer_set_period(7124); break;
-    case 2:  buzzer_set_period(4992); break;
-    case 3:  buzzer_set_period(4992); break;
-    case 4:  buzzer_set_period(4545); break;
-    case 5:  buzzer_set_period(4545); break;
-    case 6:  buzzer_set_period(4992); break;
-    case 7:  buzzer_set_period(5714); break;
-    case 8:  buzzer_set_period(5714); break;
-    case 9:  buzzer_set_period(5664); break;
-    case 10: buzzer_set_period(5664); break;
-    case 11: buzzer_set_period(6660); break;
-    case 12: buzzer_set_period(6660); break;
-    case 13: buzzer_set_period(7126); break;
-    case 14: buzzer_set_period(7126); break;
-    case 15: state=0; break;
-          
+    
+    switchAs(state);
+  }
+  else if(music==2){
+    if(switchAs2()==1){
+      music=1;
     }
   }
   else{
