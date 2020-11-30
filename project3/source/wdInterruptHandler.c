@@ -23,4 +23,14 @@ __interrupt_vec(WDT_VECTOR) WDT(){/* 250 interrupts/sec */
     change_dim = 0;
     dim_machine();
   }
+  static short count = 0;
+  P1OUT |= GREEN_LED;      /**< Green LED on when cpu on */
+  count ++;
+  if (count == 15) {
+    mlAdvance(&ml0, &fieldFence);
+    if (p2sw_read())
+    redrawScreen = 1;
+    count = 0;
+  }
+  P1OUT &= ~GREEN_LED;
 }

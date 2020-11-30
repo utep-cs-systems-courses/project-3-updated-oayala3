@@ -4,12 +4,12 @@
 #include "switches.h"
 #include "buzzer.h"
 #include "lcd.h"
-
+#include "shapemotion.h"
 char music   = 0;
 char on      = 0;
 char dimLight= 0;
 char dimLevel= 0;
-
+char party   = 0;
 void turn_on(){
   red_on      = 1;
   led_changed = 1;
@@ -130,9 +130,26 @@ void state_advance_buttons(){
       mainMenu();
     }
     break;
+    
+  case 3:
+    if(party){
+      party=0;
+    }else{
+      party=1;
+    }
   }
 }
-
+void party_state(){
+  while(party) {
+    while (!redrawScreen) { /**< Pause CPU if screen doesn't need updating */
+      P1OUT &= ~LED_GREEN;    /**< Green led off witHo CPU */
+      or_sr(0x10);      /**< CPU OFF */
+    }
+    P1OUT |=LED_GREEN;       /**< Green led on when CPU on */
+    redrawScreen = 0;
+    movLayerDraw(&ml0, &layer0);
+  }
+}
 /*
 void lcd_state(){
   if(on && !dimLight && music){

@@ -5,6 +5,10 @@ all:
 	(cd lcdLib; make install)
 
 	(cd p2swLib; make install)
+
+	(cd shapeLib; make install)
+
+	(cd circleLib; make install)
 doc:
 
 	rm -rf doxygen_docs
@@ -16,6 +20,10 @@ clean:
 	(cd timerLib; make clean)
 
 	(cd lcdLib; make clean)
+
+	(cd shapeLib; make clean)
+
+	(cd circleLib; make clean)
 
 	(cd p2swLib; make clean)
 

@@ -39,14 +39,21 @@ switch_interrupt_handler()
 {
   unsigned int readSwitch=p2sw_read();
   unsigned int i;
+  or_sr(0x8);
   for(i=0; i<4; i++){
     if ((readSwitch & (1<<i))==0){ /* check which button is pressed*/
       button = i;
       break;
     }
   }
+  
+  P1DIR |= LED_GREEN;/**< Green led on when CPU on */
+
+  P1OUT |= LED_GREEN;
   state_advance_buttons();
-  //lcd_state();
+  P1OUT &= ~LED_GREEN;    /**< Green led off witHo CPU */
+  or_sr(0x10);      /**< CPU OFF */
+  
 }
 void __interrupt_vec(PORT2_VECTOR) Port_2(){
   if (P2IFG & switch_mask) {  /* did a button cause this interrupt? */
