@@ -4,7 +4,10 @@
 	
 	.extern	buzzer_set_period() ;
 	.data
-S:	.word 0
+
+
+S:
+	.word 0			;
 JT:	
 	.word case0
 	.word case1		;
@@ -29,67 +32,67 @@ switchAs:
 	Mov &S, r12
 	cmp #16,r12		;
 	jc case15		;
-	add r12,r12		;
+	add r12,r12,#1		;
 	mov JT(r12),r0
 case0:
 	mov #7124, r12
-	call buzzer_set_period ;
+	call #buzzer_set_period ;
 	jmp switchDone
 case1:
 	mov #7124, r12
-	call buzzer_set_period;
+	call #buzzer_set_period;
 	jmp switchDone
 case2:
-	push #4992
-	call buzzer_set_period	;
+	mov #4992,r12
+	call #buzzer_set_period	;
 	jmp switchDone
 case3:
-	push #4992
-	call buzzer_set_period ;
+	mov #4992,r12
+	call #buzzer_set_period ;
 	jmp switchDone
 case4:
-	push #4545
-	call buzzer_set_period	;
+	mov #4545,r12
+	call #buzzer_set_period	;
 	jmp switchDone
 case5:
-	push #4545
-	call buzzer_set_period;
+	mov #4545,r12
+	call #buzzer_set_period;
 	jmp switchDone
 case6:
-	push #4992
-	call buzzer_set_period ;
+	mov #4992,r12
+	call #buzzer_set_period ;
 	jmp switchDone
 case7:
-	push #5714
-	call buzzer_set_period ;
+	mov #5714,r12
+	call #buzzer_set_period ;
 	jmp switchDone
 case8:
-	push #5714
-	call buzzer_set_period	;
+	mov #5714,r12
+	call #buzzer_set_period	;
 	jmp switchDone
 case9:
-	push #5664
-	call buzzer_set_period ;
+	mov #5664,r12
+	call #buzzer_set_period ;
 	jmp switchDone
 case10:
-	push #5664
-	call buzzer_set_period ;
+	mov #5664,r12
+	call #buzzer_set_period ;
 	jmp switchDone
 case11:
-	push #6660
-	call buzzer_set_period	;
+	mov #6660,r12
+	call #buzzer_set_period	;
 	jmp switchDone
 case12:
-	push #6660
-	call buzzer_set_period ;
+	mov #6660,r12
+	call #buzzer_set_period ;
 	jmp switchDone
 case13:
-	push #7126
-	call buzzer_set_period	;
+	mov #7126,r12
+	call #buzzer_set_period	;
 	jmp switchDone
 case14:
-	push #7126
-	call buzzer_set_period	;
+	mov #7126,r12
+	call #buzzer_set_period	;
 	jmp switchDone
 case15:
 	mov #0,r12		;
