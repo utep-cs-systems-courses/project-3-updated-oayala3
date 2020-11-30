@@ -1,6 +1,6 @@
 	;;  Define printf as an external function
 
-	extern	buzzer_set_period() ;
+	.extern	buzzer_set_period() ;
 	.data
 	.word 1
 jp:	
@@ -22,7 +22,7 @@ jp:
 	.word case15		;
 	
 	.text
-global switchAs
+.global switchAs
 switchAs:	
 	Mov &s, r12
 	cmp #18,r2		;
@@ -30,49 +30,64 @@ switchAs:
 	add r12,r12		;
 	mov JT(r12),r0
 case0:
-	call #buzzer_set_period(7124) ;
+	push #7124
+	call buzzer_set_period ;
 	jmp switchDone
 case1:
-	call #buzzer_set_period(7124) ;
+	push #7124
+	call buzzer_set_period;
 	jmp switchDone
 case2:
-	call #buzzer_set_period(4992)	;
+	push #4992
+	call buzzer_set_period	;
 	jmp switchDone
 case3:
-	call #buzzer_set_period(4992) ;
+	push #4992
+	call buzzer_set_period ;
 	jmp switchDone
 case4:
-	call #buzzer_set_period(4545)	;
+	push #4545
+	call buzzer_set_period	;
 	jmp switchDone
 case5:
-	call #buzzer_set_period(4545) ;
+	push #4545
+	call buzzer_set_period;
 	jmp switchDone
 case6:
-	call #buzzer_set_period(4992) ;
+	push #4992
+	call buzzer_set_period ;
 	jmp switchDone
 case7:
-	call #buzzer_set_period(5714) ;
+	push #5714
+	call buzzer_set_period ;
 	jmp switchDone
 case8:
-	call #buzzer_set_period(5714)	;
+	push #5714
+	call buzzer_set_period	;
 	jmp switchDone
 case9:
-	call #buzzer_set_period(5664) ;
+	push #5664
+	call buzzer_set_period ;
 	jmp switchDone
 case10:
-	call #buzzer_set_period(5664) ;
+	push #5664
+	call buzzer_set_period ;
 	jmp switchDone
 case11:
-	call #buzzer_set_period(6660)	;
+	push #6660
+	call buzzer_set_period	;
 	jmp switchDone
 case12:
-	call #buzzer_set_period(6660) ;
+	push #6660
+	call buzzer_set_period ;
 	jmp switchDone
 case13:
-	call #buzzer_set_period(7126)	;
+	push #7126
+	call buzzer_set_period	;
 	jmp switchDone
 case14:
-	call #buzzer_set_period(7126) ;
+	push #7126
+	call buzzer_set_period	;
 	jmp switchDone
 case15:
 	mov #0,
