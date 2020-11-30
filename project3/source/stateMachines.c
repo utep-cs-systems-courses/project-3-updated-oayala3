@@ -4,14 +4,13 @@
 #include "switches.h"
 #include "buzzer.h"
 #include "lcd.h"
-//#include "shapemotion.h"
 char music   = 0;
 char on      = 0;
 char dimLight= 0;
 char dimLevel= 0;
 char party   = 0;
 
-extern int switchAs();
+//extern int switchAs();
 
 void turn_on(){
   red_on      = 1;
@@ -173,10 +172,10 @@ void lcd_state(){
 void state_advance(){
   static int state=-1;
   if(music){
-    // state++;
-    // switch(state){
-      switchAs();
-      /*    case 0:  buzzer_set_period(7124); break;
+    state++;
+    switch(state){
+      //      switchAs();
+    case 0:  buzzer_set_period(7124); break;
     case 1:  buzzer_set_period(7124); break;
     case 2:  buzzer_set_period(4992); break;
     case 3:  buzzer_set_period(4992); break;
@@ -192,8 +191,8 @@ void state_advance(){
     case 13: buzzer_set_period(7126); break;
     case 14: buzzer_set_period(7126); break;
     case 15: state=0; break;
-      */    
-
+          
+    }
   }
   else{
     buzzer_set_period(0);
