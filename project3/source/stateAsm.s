@@ -1,5 +1,7 @@
-	;;  Define printf as an external function
-
+	.arch msp430g2553
+	.p2align 1,0
+	.text
+	
 	.extern	buzzer_set_period() ;
 	.data
 S:	.word 1
@@ -25,12 +27,12 @@ JT:
 .global switchAs
 switchAs:	
 	Mov &S, r12
-	cmp #18,r2		;
-	jnc case15		;
+	cmp #16,r12		;
+	jc case15		;
 	add r12,r12		;
 	mov JT(r12),r0
 case0:
-	push #7124
+	mov #7124, r12
 	call buzzer_set_period ;
 	jmp switchDone
 case1:
@@ -90,6 +92,7 @@ case14:
 	call buzzer_set_period	;
 	jmp switchDone
 case15:
+	mov #0,r12		;
 	jmp switchDone
 switchDone:
 	Pop r0			;

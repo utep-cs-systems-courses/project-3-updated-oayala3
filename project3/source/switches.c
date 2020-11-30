@@ -2,7 +2,7 @@
 #include "switches.h"
 #include "led.h"
 #include "stateMachines.h"
-
+#include "libTimer.h"
 
 char button=4;
 static unsigned char switch_mask;

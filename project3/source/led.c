@@ -1,5 +1,5 @@
 #include <msp430.h>
-#include <libTimer.h>
+#include "libTimer.h"
 #include "led.h"
 #include "switches.h"
 unsigned char red_on = 0 ,green_on = 0, led_changed = 0;

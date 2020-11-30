@@ -3,6 +3,8 @@
 typedef unsigned char u_char;
 
 typedef unsigned int u_int;
+extern char music;
+
 void dim25();
 void dim75();
 void dim_machine();

@@ -14,7 +14,6 @@
 #include <shape.h>
 #include <abCircle.h>
 #include "shapemotion.h"
-#define GREEN_LED BIT6
 
 
 AbRect rect10 = {abRectGetBounds, abRectCheck, {10,10}}; /**< 10x10 rectangle */
