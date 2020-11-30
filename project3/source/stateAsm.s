@@ -4,7 +4,7 @@
 	
 	.extern	buzzer_set_period() ;
 	.data
-S:	.word 1
+S:	.word 0
 JT:	
 	.word case0
 	.word case1		;
